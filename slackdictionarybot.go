@@ -57,7 +57,7 @@ func handler_lookup(w http.ResponseWriter, r *http.Request) {
 	}
 	apiurl.Path += env.APIPath
 	apiurl.Path += word
-	// create an http.Client 
+	// create an http.Client
 	client := urlfetch.Client(ctx)
 	// create an http NewRequest so we can add the headers that the API requires
 	req, err := http.NewRequest("GET", apiurl.String(), nil)
@@ -86,4 +86,3 @@ func handler_lookup(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "```%s```\n", odr.Results[0].LexicalEntries[0].Entries[0].Senses[0].Definitions[0])
 	return
 }
-
