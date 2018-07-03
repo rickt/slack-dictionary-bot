@@ -76,6 +76,7 @@ func handler_lookup(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "\n\nError making http.NewRequest = %s\n", err.Error())
 		return
 	}
+	// check the response from the Oxford Dictionary API
 	if response.StatusCode != 200 {
 		fmt.Fprintf(w, "Error: no such word `%s`\n", word)
 		return
