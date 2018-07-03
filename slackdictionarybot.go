@@ -35,8 +35,9 @@ func handler_redirect(w http.ResponseWriter, r *http.Request) {
 
 func handler_lookup(w http.ResponseWriter, r *http.Request) {
 	// vars
-	var word string
 	var apiurl *url.URL
+	var odr OxfordReply
+	var word string
 	// create a google app engine context
 	ctx := appengine.NewContext(r)
 	// what is our OG query from slack?
@@ -80,7 +81,6 @@ func handler_lookup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// request was successful, so decode the response body into our nice JSON struct
-	var odr OxfordReply
 	json.NewDecoder(response.Body).Decode(&odr)
 	fmt.Fprintf(w, "The Oxford Dictionary definition of `%s` is:\n", word)
 	fmt.Fprintf(w, "```%s```\n", odr.Results[0].LexicalEntries[0].Entries[0].Senses[0].Definitions[0])
